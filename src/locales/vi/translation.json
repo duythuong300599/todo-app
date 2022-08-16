@@ -3,6 +3,8 @@
     "todo-title": "Danh sách việc cần làm",
     "btn-del": "Xoá",
     "btn-edit": "Chỉnh Sửa",
+    "btnAdd": "Thêm",
+    "addPlaceholder": "Nhập công việc...",
     "data": [
       "Thử thách 1: Tìm một bức ảnh ngốc nghếch của bạn vào năm 6 tuổi sau đó cười vì bạn ngốc nghếch như thế nào.",
       "Thử thách 2: Xem YouTube tới 5 giờ sáng.",

@@ -3,6 +3,8 @@
     "todo-title": "Todo List",
     "btn-del": "Delete",
     "btn-edit": "Edit",
+    "btnAdd": "Add",
+    "addPlaceholder": "Enter todo...",
     "data": [
       "Challenges 1: Find a stupid photo of yourself at age 6, then laugh at how much of an idiot you were.",
       "Challenges 2: Watch YouTube till 5am.",
