@@ -1,13 +1,14 @@
 import { Button, List } from "antd";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Data } from "../../../../mock/mockData";
 import "./listTodo.css";
-import "antd/dist/antd.css";
 
 const ListTodo: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="list-todo-wrapper">
-      <h1 className="list-todo-title">Todo List</h1>
+      <h1 className="list-todo-title">{t("content.todo-title")}</h1>
       <div className="list-todo">
         <List
           bordered
