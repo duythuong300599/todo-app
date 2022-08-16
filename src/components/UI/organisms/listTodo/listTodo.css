@@ -1,0 +1,47 @@
+.list-todo-wrapper {
+  display: block;
+  height: auto;
+  max-height: 400px;
+  width: 700px;
+  color: #000;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.list-todo-title {
+  margin: 0;
+  padding: 0 10px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.list-todo-wrapper .list-todo {
+  max-width: 100%;
+  max-height: calc(400px - 44px);
+  height: auto;
+  overflow: hidden scroll;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ScrollBar */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: #000;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
