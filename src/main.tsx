@@ -5,8 +5,8 @@ import App from "./App";
 import { StoreProvider } from "./stores";
 import i18n from "./translations/i18n";
 
-import "./index.css";
 import "antd/dist/antd.css";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
