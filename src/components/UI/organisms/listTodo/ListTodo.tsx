@@ -6,19 +6,22 @@ import "./listTodo.css";
 
 const ListTodo: React.FC = () => {
   const { t } = useTranslation();
+
   return (
     <div className="list-todo-wrapper">
       <h1 className="list-todo-title">{t("content.todo-title")}</h1>
       <div className="list-todo">
         <List
           bordered
-          dataSource={Data}
+          dataSource={t("content.data", { returnObjects: true })}
           renderItem={(item: string) => (
             <List.Item
               actions={[
-                <Button type="primary">Edit</Button>,
-                <Button type="primary" danger>
-                  Delete
+                <Button style={{ width: "100px" }} type="primary">
+                  {t("content.btn-edit")}
+                </Button>,
+                <Button style={{ width: "80px" }} type="primary" danger>
+                  {t("content.btn-del")}
                 </Button>,
               ]}
             >

@@ -1,5 +1,24 @@
 {
   "content": {
-    "todo-title": "Danh sách việc cần làm"
+    "todo-title": "Danh sách việc cần làm",
+    "btn-del": "Xoá",
+    "btn-edit": "Chỉnh Sửa",
+    "data": [
+      "Thử thách 1: Tìm một bức ảnh ngốc nghếch của bạn vào năm 6 tuổi sau đó cười vì bạn ngốc nghếch như thế nào.",
+      "Thử thách 2: Xem YouTube tới 5 giờ sáng.",
+      "Thử thách 3: Chơi trò chơi đi quanh nhà của bạn mà không được chạm đất.",
+      "Thử thách 4: Viết câu chuyện của riêng bạn về điều gì đó vui vẻ.",
+      "Thử thách 5",
+      "Thử thách 6",
+      "Thử thách 7",
+      "Thử thách 8",
+      "Thử thách 9",
+      "Thử thách 10",
+      "Thử thách 11",
+      "Thử thách 12",
+      "Thử thách 13",
+      "Thử thách 14",
+      "Thử thách 15"
+    ]
   }
 }
