@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Data } from "../../../../mock/mockData";
 import { useStore } from "../../../../stores";
+import ButtonEdit from "../../atoms/ButtonEdit";
 import "./listTodo.css";
 
 const ListTodo: React.FC = () => {
@@ -16,13 +17,12 @@ const ListTodo: React.FC = () => {
         <List
           bordered
           dataSource={state.todos}
-          renderItem={(item: string) => (
+          renderItem={(item: string, i: number) => (
             <List.Item
+              key={i}
               actions={[
-                <Button style={{ width: "100px" }} type="primary">
-                  {t("content.btn-edit")}
-                </Button>,
-                <Button style={{ width: "80px" }} type="primary" danger>
+                <ButtonEdit item={item} />,
+                <Button className="btn-delete" type="primary" danger>
                   {t("content.btn-del")}
                 </Button>,
               ]}
