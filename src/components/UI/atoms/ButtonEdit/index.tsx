@@ -1,7 +1,11 @@
 import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
-import { setDataInput, toggleBtnSave } from "../../../../stores/actions";
+import {
+  setDataInput,
+  setIdxEdit,
+  toggleBtnSave,
+} from "../../../../stores/actions";
 import "./ButtonEdit.css";
 
 interface Props {
@@ -16,6 +20,7 @@ const ButtonEdit: React.FC<Props> = ({ item, index }) => {
   const handleEdit = () => {
     dispatch(setDataInput(item));
     dispatch(toggleBtnSave(true));
+    dispatch(setIdxEdit(index));
   };
 
   return (

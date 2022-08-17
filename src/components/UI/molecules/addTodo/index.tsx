@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
 import {
   addTodo,
+  editTodo,
   setDataInput,
   toggleBtnSave,
 } from "../../../../stores/actions";
@@ -13,7 +14,7 @@ const AddTodo: React.FC = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { state, dispatch } = useStore();
-  const { todoInput, stateBtnSave } = state;
+  const { todoInput, stateBtnSave, idxEdit } = state;
 
   console.log(stateBtnSave);
 
@@ -48,6 +49,7 @@ const AddTodo: React.FC = () => {
       setLoading(true);
       setTimeout(() => {
         success();
+        dispatch(editTodo({ data: todoInput, index: idxEdit }));
         dispatch(setDataInput(""));
         setLoading(false);
         dispatch(toggleBtnSave(false));

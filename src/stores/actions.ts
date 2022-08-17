@@ -1,4 +1,4 @@
-import { ADD_TODO, SET_DATA_INPUT, TOGGLE_BNT_SAVE } from "./constants"
+import { ADD_TODO, EDIT_TODO, SET_DATA_INPUT, SET_IDX_EDIT, TOGGLE_BNT_SAVE } from "./constants"
 
 export const setDataInput = (payload:string) => ({
     type: SET_DATA_INPUT,
@@ -16,3 +16,11 @@ export const toggleBtnSave = (payload:boolean) => ({
     payload
 })
 
+export const editTodo = (payload: {data: string, index: number}) => ({
+    type: EDIT_TODO,
+    payload
+})
+export const setIdxEdit = (payload: number) => ({
+    type: SET_IDX_EDIT,
+    payload
+})

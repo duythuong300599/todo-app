@@ -1,9 +1,16 @@
-import { ADD_TODO, SET_DATA_INPUT, TOGGLE_BNT_SAVE } from "./constants";
+import {
+  ADD_TODO,
+  EDIT_TODO,
+  SET_DATA_INPUT,
+  SET_IDX_EDIT,
+  TOGGLE_BNT_SAVE,
+} from "./constants";
 
 interface typeInitState {
   todos: Array<string>;
   todoInput: string;
   stateBtnSave: boolean;
+  idxEdit: number ;
 }
 
 const initState: typeInitState = {
@@ -14,7 +21,8 @@ const initState: typeInitState = {
     "Challenges 4: Write your own story about something funny.",
   ],
   todoInput: "",
-  stateBtnSave: false
+  stateBtnSave: false,
+  idxEdit: 0,
 };
 
 function reducer(state: any, action: any): typeInitState {
@@ -22,18 +30,30 @@ function reducer(state: any, action: any): typeInitState {
     case SET_DATA_INPUT:
       return {
         ...state,
-        todoInput:  action.payload
-      }
+        todoInput: action.payload,
+      };
     case ADD_TODO:
       return {
         ...state,
-        todos: [...state.todos, action.payload]
-      }
-      case TOGGLE_BNT_SAVE:
+        todos: [...state.todos, action.payload],
+      };
+    case TOGGLE_BNT_SAVE:
+      return {
+        ...state,
+        stateBtnSave: action.payload,
+      };
+    case EDIT_TODO:
+      const newTodos = [...state.todos]
+      newTodos.splice(action.payload.index, 1, action.payload.data)
+      return {
+        ...state,
+        todos: newTodos
+      };
+      case SET_IDX_EDIT:
         return {
           ...state,
-          stateBtnSave: action.payload
-        }
+          idxEdit: action.payload
+        };
     default:
       return state;
   }
