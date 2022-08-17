@@ -1,4 +1,4 @@
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
@@ -10,6 +10,16 @@ const AddTodo: React.FC = () => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const { dispatch } = useStore();
+
+  //messages add success
+  const success = () => {
+    message.success(t("content.successMsg"));
+  };
+
+  //messages add error
+  const error = () => {
+    message.error(t("content.errorMsg"));
+  };
 
   //handle changeTodo
   const changeTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +33,12 @@ const AddTodo: React.FC = () => {
       console.log("click");
       const fakeApi = setTimeout(() => {
         dispatch(addTodo(input.trim()));
+        success();
         setInput("");
         setLoading(false);
       }, 2000);
+    } else {
+      error();
     }
   };
 
