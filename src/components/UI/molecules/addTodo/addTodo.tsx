@@ -2,22 +2,22 @@ import { Button, Input } from "antd";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
+import { setTodoInput, addTodo } from "../../../../stores/actions";
 import "./addTodo.css";
 
 const AddTodo: React.FC = () => {
   const { t } = useTranslation();
-  const [todo, setTodo] = useState<string>("");
   const { state, dispatch } = useStore();
-  console.log(state);
+  const { todoInput } = state;
 
   //handle changeTodo
   const changeTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTodo(e.target.value);
+    dispatch(setTodoInput(e.target.value));
   };
 
   //handle addTodo
-  const addTodo = () => {
-    console.log(todo);
+  const addDataTodo = () => {
+    dispatch(addTodo(todoInput));
   };
 
   return (
@@ -26,10 +26,10 @@ const AddTodo: React.FC = () => {
         <Input
           style={{ width: "calc(100% - 80px)" }}
           placeholder={t("content.addPlaceholder")}
-          value={todo}
+          value={todoInput}
           onChange={changeTodo}
         />
-        <Button style={{ width: "80px" }} type="primary" onClick={addTodo}>
+        <Button style={{ width: "80px" }} type="primary" onClick={addDataTodo}>
           {t("content.btnAdd")}
         </Button>
       </Input.Group>

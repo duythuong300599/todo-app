@@ -2,10 +2,12 @@ import { Button, List } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Data } from "../../../../mock/mockData";
+import { useStore } from "../../../../stores";
 import "./listTodo.css";
 
 const ListTodo: React.FC = () => {
   const { t } = useTranslation();
+  const { state } = useStore();
 
   return (
     <div className="list-todo-wrapper">
@@ -13,7 +15,7 @@ const ListTodo: React.FC = () => {
       <div className="list-todo">
         <List
           bordered
-          dataSource={t("content.data", { returnObjects: true })}
+          dataSource={state.todos}
           renderItem={(item: string) => (
             <List.Item
               actions={[
