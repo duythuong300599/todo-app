@@ -4,6 +4,7 @@
     "btn-del": "Delete",
     "btn-edit": "Edit",
     "btnAdd": "Add",
+    "btnSave": "Save",
     "addPlaceholder": "Enter todo...",
     "successMsg": "Add Todo Success",
     "errorMsg": "Todo can't be empty"

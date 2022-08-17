@@ -4,6 +4,7 @@
     "btn-del": "Xoá",
     "btn-edit": "Chỉnh Sửa",
     "btnAdd": "Thêm",
+    "btnSave": "Lưu",
     "addPlaceholder": "Nhập công việc...",
     "successMsg": "Thêm công việc thành công.",
     "errorMsg": "Công việc không được để trống."

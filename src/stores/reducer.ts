@@ -1,8 +1,9 @@
-import { ADD_TODO, SET_DATA_INPUT } from "./constants";
+import { ADD_TODO, SET_DATA_INPUT, TOGGLE_BNT_SAVE } from "./constants";
 
 interface typeInitState {
   todos: Array<string>;
   todoInput: string;
+  stateBtnSave: boolean;
 }
 
 const initState: typeInitState = {
@@ -13,6 +14,7 @@ const initState: typeInitState = {
     "Challenges 4: Write your own story about something funny.",
   ],
   todoInput: "",
+  stateBtnSave: false
 };
 
 function reducer(state: any, action: any): typeInitState {
@@ -27,7 +29,11 @@ function reducer(state: any, action: any): typeInitState {
         ...state,
         todos: [...state.todos, action.payload]
       }
-
+      case TOGGLE_BNT_SAVE:
+        return {
+          ...state,
+          stateBtnSave: action.payload
+        }
     default:
       return state;
   }
