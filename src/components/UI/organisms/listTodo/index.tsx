@@ -21,7 +21,7 @@ const ListTodo: React.FC = () => {
             <List.Item
               key={i}
               actions={[
-                <ButtonEdit item={item} />,
+                <ButtonEdit item={item} index={i} />,
                 <Button className="btn-delete" type="primary" danger>
                   {t("content.btn-del")}
                 </Button>,

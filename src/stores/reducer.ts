@@ -1,4 +1,4 @@
-import { ADD_TODO } from "./constants";
+import { ADD_TODO, SET_DATA_INPUT } from "./constants";
 
 interface typeInitState {
   todos: Array<string>;
@@ -17,6 +17,11 @@ const initState: typeInitState = {
 
 function reducer(state: any, action: any): typeInitState {
   switch (action.type) {
+    case SET_DATA_INPUT:
+      return {
+        ...state,
+        todoInput:  action.payload
+      }
     case ADD_TODO:
       return {
         ...state,

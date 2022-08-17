@@ -1,5 +1,9 @@
-import { ADD_TODO } from "./constants"
+import { ADD_TODO, SET_DATA_INPUT } from "./constants"
 
+export const setDataInput = (payload:string) => ({
+    type: SET_DATA_INPUT,
+    payload
+})
 
 
 export const addTodo = (payload:string) => ({
