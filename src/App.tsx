@@ -1,10 +1,10 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-import { useStore } from "./stores";
-import ListTodo from "./components/UI/organisms/listTodo/ListTodo";
-import ChangeLanguage from "./components/UI/molecules/changeLanguage/changeLanguage";
-import AddTodo from "./components/UI/molecules/addTodo/addTodo";
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import './App.css';
+import { useStore } from './stores';
+import ListTodo from './components/UI/organisms/ListTodo';
+import ChangeLanguage from './components/UI/molecules/ChangeLanguage';
+import AddTodo from './components/UI/molecules/AddTodo';
 
 function App() {
   return (
