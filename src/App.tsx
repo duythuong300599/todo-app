@@ -7,10 +7,6 @@ import ChangeLanguage from "./components/UI/molecules/changeLanguage/changeLangu
 import AddTodo from "./components/UI/molecules/addTodo/addTodo";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const state = useStore();
-  console.log(state);
-
   return (
     <>
       <ChangeLanguage />

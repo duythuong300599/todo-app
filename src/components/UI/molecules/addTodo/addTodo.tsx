@@ -1,5 +1,5 @@
 import { Button, Input } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
 import { setTodoInput, addTodo } from "../../../../stores/actions";
@@ -17,19 +17,23 @@ const AddTodo: React.FC = () => {
 
   //handle addTodo
   const addDataTodo = () => {
-    dispatch(addTodo(todoInput));
+    if (todoInput !== "") {
+      dispatch(addTodo(todoInput.trim()));
+      dispatch(setTodoInput(""));
+    }
   };
 
   return (
     <div className="add-todo-container">
       <Input.Group compact>
         <Input
-          style={{ width: "calc(100% - 80px)" }}
+          className="add-todo-input"
           placeholder={t("content.addPlaceholder")}
           value={todoInput}
           onChange={changeTodo}
+          onPressEnter={addDataTodo}
         />
-        <Button style={{ width: "80px" }} type="primary" onClick={addDataTodo}>
+        <Button className="add-todo-btn" type="primary" onClick={addDataTodo}>
           {t("content.btnAdd")}
         </Button>
       </Input.Group>
