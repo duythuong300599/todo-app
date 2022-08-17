@@ -1,25 +1,31 @@
 import { Button, Input } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
-import { setTodoInput, addTodo } from "../../../../stores/actions";
+import { addTodo } from "../../../../stores/actions";
 import "./addTodo.css";
 
 const AddTodo: React.FC = () => {
   const { t } = useTranslation();
-  const { state, dispatch } = useStore();
-  const { todoInput } = state;
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { dispatch } = useStore();
 
   //handle changeTodo
   const changeTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setTodoInput(e.target.value));
+    setInput(e.target.value);
   };
 
   //handle addTodo
   const addDataTodo = () => {
-    if (todoInput !== "") {
-      dispatch(addTodo(todoInput.trim()));
-      dispatch(setTodoInput(""));
+    if (input !== "") {
+      setLoading(true);
+      console.log("click");
+      const fakeApi = setTimeout(() => {
+        dispatch(addTodo(input.trim()));
+        setInput("");
+        setLoading(false);
+      }, 2000);
     }
   };
 
@@ -29,11 +35,16 @@ const AddTodo: React.FC = () => {
         <Input
           className="add-todo-input"
           placeholder={t("content.addPlaceholder")}
-          value={todoInput}
+          value={input}
           onChange={changeTodo}
           onPressEnter={addDataTodo}
         />
-        <Button className="add-todo-btn" type="primary" onClick={addDataTodo}>
+        <Button
+          className="add-todo-btn"
+          loading={loading}
+          type="primary"
+          onClick={addDataTodo}
+        >
           {t("content.btnAdd")}
         </Button>
       </Input.Group>
