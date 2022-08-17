@@ -7,34 +7,30 @@ import "./addTodo.css";
 
 const AddTodo: React.FC = () => {
   const { t } = useTranslation();
-  const [input, setInput] = useState("");
+  const [todoInput, setTodoInput] = useState("");
   const [loading, setLoading] = useState(false);
   const { dispatch } = useStore();
 
-  //messages add success
   const success = () => {
     message.success(t("content.successMsg"));
   };
 
-  //messages add error
   const error = () => {
     message.error(t("content.errorMsg"));
   };
 
-  //handle changeTodo
   const changeTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    setTodoInput(e.target.value);
   };
 
-  //handle addTodo
   const addDataTodo = () => {
-    if (input !== "") {
+    if (todoInput !== "") {
       setLoading(true);
       console.log("click");
       const fakeApi = setTimeout(() => {
-        dispatch(addTodo(input.trim()));
+        dispatch(addTodo(todoInput.trim()));
         success();
-        setInput("");
+        setTodoInput("");
         setLoading(false);
       }, 2000);
     } else {
@@ -48,7 +44,7 @@ const AddTodo: React.FC = () => {
         <Input
           className="add-todo-input"
           placeholder={t("content.addPlaceholder")}
-          value={input}
+          value={todoInput}
           onChange={changeTodo}
           onPressEnter={addDataTodo}
         />
