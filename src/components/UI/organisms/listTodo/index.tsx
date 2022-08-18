@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Data } from "../../../../mock/mockData";
 import { useStore } from "../../../../stores";
+import ButtonDelete from "../../atoms/ButtonDel";
 import ButtonEdit from "../../atoms/ButtonEdit";
 import "./listTodo.css";
 
@@ -22,9 +23,7 @@ const ListTodo: React.FC = () => {
               key={i}
               actions={[
                 <ButtonEdit item={item} index={i} />,
-                <Button className="btn-delete" type="primary" danger>
-                  {t("content.btn-del")}
-                </Button>,
+                <ButtonDelete index={i} />,
               ]}
             >
               {item}

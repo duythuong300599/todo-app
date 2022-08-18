@@ -16,14 +16,14 @@ const AddTodo: React.FC = () => {
   const { state, dispatch } = useStore();
   const { todoInput, stateBtnSave, idxEdit } = state;
 
-  console.log(stateBtnSave);
-
   const success = () => {
-    message.success(t("content.successMsg"));
+    message.success(
+      stateBtnSave ? t("message.editSuccess") : t("message.addSuccess")
+    );
   };
 
   const error = () => {
-    message.error(t("content.errorMsg"));
+    message.error(t("message.addError"));
   };
 
   const changeTodo = (e: React.ChangeEvent<HTMLInputElement>) => {

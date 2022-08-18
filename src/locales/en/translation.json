@@ -1,12 +1,19 @@
 {
   "content": {
+    "yes": "Yes",
+    "no": "No",
     "todo-title": "Todo List",
     "btn-del": "Delete",
     "btn-edit": "Edit",
     "btnAdd": "Add",
     "btnSave": "Save",
-    "addPlaceholder": "Enter todo...",
-    "successMsg": "Add Todo Success",
-    "errorMsg": "Todo can't be empty"
+    "addPlaceholder": "Enter todo..."
+  },
+  "message": {
+    "addSuccess": "Add Todo Success",
+    "addError": "Todo can't be empty",
+    "del": "Are you sure to delete this todo?",
+    "delSuccess": "Delete Success",
+    "editSuccess": "Edit Success"
   }
 }
