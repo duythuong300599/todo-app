@@ -1,47 +1,29 @@
 import { Button, Input, message } from "antd";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
 import {
-  addTodo,
   editTodo,
   setDataInput,
   toggleBtnSave,
 } from "../../../../stores/actions";
-import "./addTodo.css";
 
-const AddTodo: React.FC = () => {
+const InputEdit: React.FC = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { state, dispatch } = useStore();
-  const { todoInput, stateBtnSave, idxEdit } = state;
-
-  console.log(stateBtnSave);
+  const { todoInput, idxEdit } = state;
 
   const success = () => {
-    message.success(t("content.successMsg"));
+    message.success(t("message.editSuccess"));
   };
 
   const error = () => {
-    message.error(t("content.errorMsg"));
+    message.error(t("message.addError"));
   };
 
   const changeTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setDataInput(e.target.value));
-  };
-
-  const addDataTodo = () => {
-    if (todoInput.trim() !== "") {
-      setLoading(true);
-      setTimeout(() => {
-        dispatch(addTodo(todoInput.trim()));
-        success();
-        dispatch(setDataInput(""));
-        setLoading(false);
-      }, 1000);
-    } else {
-      error();
-    }
   };
 
   const saveDataTodo = () => {
@@ -58,28 +40,27 @@ const AddTodo: React.FC = () => {
       error();
     }
   };
-
   return (
-    <div className="add-todo-container">
+    <>
       <Input.Group compact>
         <Input
           className="add-todo-input"
           placeholder={t("content.addPlaceholder")}
           value={todoInput}
           onChange={changeTodo}
-          onPressEnter={addDataTodo}
+          onPressEnter={saveDataTodo}
         />
         <Button
           className="add-todo-btn"
           loading={loading}
           type="primary"
-          onClick={stateBtnSave ? saveDataTodo : addDataTodo}
+          onClick={saveDataTodo}
         >
-          {stateBtnSave ? t("content.btnSave") : t("content.btnAdd")}
+          {t("content.btnSave")}
         </Button>
       </Input.Group>
-    </div>
+    </>
   );
 };
 
-export default AddTodo;
+export default InputEdit;

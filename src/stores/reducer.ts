@@ -1,5 +1,6 @@
 import {
   ADD_TODO,
+  DELETE_TODO,
   EDIT_TODO,
   SET_DATA_INPUT,
   SET_IDX_EDIT,
@@ -10,7 +11,7 @@ interface typeInitState {
   todos: Array<string>;
   todoInput: string;
   stateBtnSave: boolean;
-  idxEdit: number ;
+  idxEdit: number;
 }
 
 const initState: typeInitState = {
@@ -43,17 +44,24 @@ function reducer(state: any, action: any): typeInitState {
         stateBtnSave: action.payload,
       };
     case EDIT_TODO:
-      const newTodos = [...state.todos]
-      newTodos.splice(action.payload.index, 1, action.payload.data)
+      const newTodos = [...state.todos];
+      newTodos.splice(action.payload.index, 1, action.payload.data);
       return {
         ...state,
-        todos: newTodos
+        todos: newTodos,
       };
-      case SET_IDX_EDIT:
-        return {
-          ...state,
-          idxEdit: action.payload
-        };
+    case SET_IDX_EDIT:
+      return {
+        ...state,
+        idxEdit: action.payload,
+      };
+    case DELETE_TODO:
+      const cloneTodos = [...state.todos];
+      cloneTodos.splice(action.payload, 1);
+      return {
+        ...state,
+        todos: cloneTodos
+      };
     default:
       return state;
   }

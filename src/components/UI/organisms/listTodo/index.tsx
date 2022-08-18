@@ -1,9 +1,8 @@
-import { Button, List } from "antd";
+import { List } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Data } from "../../../../mock/mockData";
 import { useStore } from "../../../../stores";
-import ButtonEdit from "../../atoms/ButtonEdit";
+import TodoItem from "../../molecules/TodoItem";
 import "./listTodo.css";
 
 const ListTodo: React.FC = () => {
@@ -18,17 +17,7 @@ const ListTodo: React.FC = () => {
           bordered
           dataSource={state.todos}
           renderItem={(item: string, i: number) => (
-            <List.Item
-              key={i}
-              actions={[
-                <ButtonEdit item={item} index={i} />,
-                <Button className="btn-delete" type="primary" danger>
-                  {t("content.btn-del")}
-                </Button>,
-              ]}
-            >
-              {item}
-            </List.Item>
+            <TodoItem item={item} index={i} />
           )}
         ></List>
       </div>

@@ -1,7 +1,3 @@
-.add-todo-container {
-  margin-bottom: 15px;
-}
-
 .add-todo-input {
   width: calc(100% - 80px) !important;
 }
