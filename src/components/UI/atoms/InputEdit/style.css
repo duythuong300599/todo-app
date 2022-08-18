@@ -1,0 +1,7 @@
+.edit-todo-input {
+  width: calc(100% - 80px) !important;
+}
+
+.edit-todo-btn {
+  width: 80px;
+}
