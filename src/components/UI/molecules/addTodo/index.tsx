@@ -2,14 +2,21 @@ import { Button, Input, message } from "antd";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
-import { addTodo } from "../../../../stores/actions";
+import {
+  addTodo,
+  editTodo,
+  setDataInput,
+  toggleBtnSave,
+} from "../../../../stores/actions";
 import "./addTodo.css";
 
 const AddTodo: React.FC = () => {
   const { t } = useTranslation();
-  const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
-  const { dispatch } = useStore();
+  const { state, dispatch } = useStore();
+  const { todoInput, stateBtnSave, idxEdit } = state;
+
+  console.log(stateBtnSave);
 
   const success = () => {
     message.success(t("content.successMsg"));
@@ -20,17 +27,32 @@ const AddTodo: React.FC = () => {
   };
 
   const changeTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+    dispatch(setDataInput(e.target.value));
   };
 
   const addDataTodo = () => {
-    if (name.trim() !== "") {
+    if (todoInput.trim() !== "") {
       setLoading(true);
       setTimeout(() => {
-        dispatch(addTodo(name.trim()));
+        dispatch(addTodo(todoInput.trim()));
         success();
-        setName("");
+        dispatch(setDataInput(""));
         setLoading(false);
+      }, 1000);
+    } else {
+      error();
+    }
+  };
+
+  const saveDataTodo = () => {
+    if (todoInput.trim() !== "") {
+      setLoading(true);
+      setTimeout(() => {
+        success();
+        dispatch(editTodo({ data: todoInput, index: idxEdit }));
+        dispatch(setDataInput(""));
+        setLoading(false);
+        dispatch(toggleBtnSave(false));
       }, 1000);
     } else {
       error();
@@ -43,7 +65,7 @@ const AddTodo: React.FC = () => {
         <Input
           className="add-todo-input"
           placeholder={t("content.addPlaceholder")}
-          value={name}
+          value={todoInput}
           onChange={changeTodo}
           onPressEnter={addDataTodo}
         />
@@ -51,9 +73,9 @@ const AddTodo: React.FC = () => {
           className="add-todo-btn"
           loading={loading}
           type="primary"
-          onClick={addDataTodo}
+          onClick={stateBtnSave ? saveDataTodo : addDataTodo}
         >
-          {t("content.btnAdd")}
+          {stateBtnSave ? t("content.btnSave") : t("content.btnAdd")}
         </Button>
       </Input.Group>
     </div>
