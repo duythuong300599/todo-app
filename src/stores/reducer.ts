@@ -1,29 +1,25 @@
+import { data } from "../mock/mockData";
 import {
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
+  SEARCH_TODO,
   SET_DATA_INPUT,
   SET_IDX_EDIT,
-  TOGGLE_BNT_SAVE,
 } from "./constants";
 
 interface typeInitState {
-  todos: Array<string>;
+  todos: Array<{ id: number; name: string }>;
   todoInput: string;
-  stateBtnSave: boolean;
   idxEdit: number;
+  inputSearch: string;
 }
 
 const initState: typeInitState = {
-  todos: [
-    "Challenges 1: Find a stupid photo of yourself at age 6, then laugh at how much of an idiot you were.",
-    "Challenges 2: Watch YouTube till 5am.",
-    "Challenges 3: Play a game where you have to get around your house without touching the ground.",
-    "Challenges 4: Write your own story about something funny.",
-  ],
+  todos: data,
   todoInput: "",
-  stateBtnSave: false,
   idxEdit: 0,
+  inputSearch: "",
 };
 
 function reducer(state: any, action: any): typeInitState {
@@ -34,18 +30,17 @@ function reducer(state: any, action: any): typeInitState {
         todoInput: action.payload,
       };
     case ADD_TODO:
+      const data = [...state.todos];
+      const lastId = data[data.length - 1].id;
+      const newId = lastId + 1;
       return {
         ...state,
-        todos: [...state.todos, action.payload],
-      };
-    case TOGGLE_BNT_SAVE:
-      return {
-        ...state,
-        stateBtnSave: action.payload,
+        todos: [...state.todos, { id: newId, name: action.payload }],
       };
     case EDIT_TODO:
       const newTodos = [...state.todos];
-      newTodos.splice(action.payload.index, 1, action.payload.data);
+      const idx = newTodos.findIndex((item) => item.id === action.payload.id);
+      newTodos[idx].name = action.payload.data;
       return {
         ...state,
         todos: newTodos,
@@ -57,10 +52,19 @@ function reducer(state: any, action: any): typeInitState {
       };
     case DELETE_TODO:
       const cloneTodos = [...state.todos];
-      cloneTodos.splice(action.payload, 1);
+      const res = cloneTodos.filter((todo) => {
+        if (todo.id !== action.payload) {
+          return todo;
+        }
+      });
       return {
         ...state,
-        todos: cloneTodos
+        todos: res,
+      };
+    case SEARCH_TODO:
+      return {
+        ...state,
+        inputSearch: action.payload,
       };
     default:
       return state;
