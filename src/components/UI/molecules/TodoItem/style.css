@@ -1,0 +1,18 @@
+.todo-item {
+  border: 1px solid #d9d9d970;
+  padding: 12px 24px;
+}
+
+.todo-item-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-item-btn {
+  display: flex;
+}
+
+.btn-edit {
+  width: 100px;
+}

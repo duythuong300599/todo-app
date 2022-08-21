@@ -6,10 +6,10 @@ import { deleteTodo } from "../../../../stores/actions";
 import "./style.css";
 
 interface Props {
-  index: number;
+  id: number;
 }
 
-const ButtonDelete: React.FC<Props> = ({ index }) => {
+const ButtonDelete: React.FC<Props> = ({ id }) => {
   const { t } = useTranslation();
   const { dispatch } = useStore();
   const [loading, setLoading] = useState<boolean>(false);
@@ -21,7 +21,7 @@ const ButtonDelete: React.FC<Props> = ({ index }) => {
   const handleDelete = (): void => {
     setLoading(true);
     setTimeout(() => {
-      dispatch(deleteTodo(index));
+      dispatch(deleteTodo(id));
       confirm();
       setLoading(false);
     }, 1000);
@@ -37,7 +37,7 @@ const ButtonDelete: React.FC<Props> = ({ index }) => {
         cancelText={t("content.no")}
       >
         <Button className="btn-delete" loading={loading} type="primary" danger>
-          {t("content.btn-del")}
+          {loading ? "" : t("content.btn-del")}
         </Button>
       </Popconfirm>
     </>

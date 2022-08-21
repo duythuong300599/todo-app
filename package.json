@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "antd": "^4.22.5",
     "i18next": "^21.9.0",
     "i18next-http-backend": "^1.4.1",
