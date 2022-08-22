@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
 import { addTodo, setDataInput } from "../../../../stores/actions";
+import SelectTags from "../../molecules/SelectTags";
 
 import "./style.css";
 
@@ -11,10 +12,10 @@ const InputAdd: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const { state, dispatch } = useStore();
   const { todos, todoInput } = state;
+  const [selectTag, setSelectTag] = useState("");
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-    return () => {};
   }, [todos]);
 
   const success = () => {
@@ -29,13 +30,18 @@ const InputAdd: React.FC = () => {
     dispatch(setDataInput(e.target.value));
   };
 
+  const handleSelectTag = (e: string) => {
+    setSelectTag(e);
+  };
+
   const addDataTodo = () => {
-    if (todoInput.trim() !== "") {
+    if (todoInput.trim() !== "" && selectTag.trim() !== "") {
       setLoading(true);
       setTimeout(() => {
-        dispatch(addTodo(todoInput.trim()));
+        dispatch(addTodo({ name: todoInput.trim(), tag: selectTag.trim() }));
         success();
         dispatch(setDataInput(""));
+        setSelectTag("");
         setLoading(false);
       }, 1000);
     } else {
@@ -53,6 +59,7 @@ const InputAdd: React.FC = () => {
           onChange={changeTodo}
           onPressEnter={addDataTodo}
         />
+        <SelectTags onChange={handleSelectTag} />
         <Button
           className="add-todo-btn"
           loading={loading}
