@@ -8,7 +8,7 @@ import "./listTodo.css";
 
 const ListTodo: React.FC = () => {
   const { state } = useStore();
-  const { todos, inputSearch } = state;
+  const { todos, inputSearch, selectTagSearch } = state;
   const [pagination, setPagination] = useState<{
     current: number;
     minIdx: number;
@@ -19,17 +19,34 @@ const ListTodo: React.FC = () => {
     maxIdx: 5,
   });
 
-  const filterTodos = () => {
-    if (inputSearch === "") return todos;
-    const res = todos.filter((todo: { id: number; name: string }) => {
-      const search = todo.name.toLowerCase().includes(inputSearch);
-      if (search) return todo;
-    });
-
+  const filterTodos = (lists: Array<any>) => {
+    if (inputSearch === "") return lists;
+    const res = lists.filter(
+      (todo: { id: number; tag: string; name: string }) => {
+        const search = todo.name.toLowerCase().includes(inputSearch);
+        if (search) return todo;
+      }
+    );
     return res;
   };
 
-  const dataTodo = useMemo(() => filterTodos(), [inputSearch, todos]);
+  const handlesearch = () => {
+    if (selectTagSearch === "all") return filterTodos(todos);
+    const res = todos.filter(
+      (todo: { id: number; tag: string; name: string }) => {
+        const itemSearch = todo.tag
+          .toLowerCase()
+          .includes(selectTagSearch.toLowerCase());
+        if (itemSearch) return todo;
+      }
+    );
+    return filterTodos(res);
+  };
+
+  const dataTodo = useMemo(
+    () => handlesearch(),
+    [selectTagSearch, inputSearch, todos]
+  );
 
   const handleChangePage = (page: number) => {
     setPagination({
