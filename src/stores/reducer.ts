@@ -15,8 +15,17 @@ interface typeInitState {
   inputSearch: string;
 }
 
+
+let dataLocal: any
+const value = localStorage.getItem('todos')
+if(typeof value === "string"){
+  dataLocal = JSON.parse(value)
+}else{
+  dataLocal = []
+}
+
 const initState: typeInitState = {
-  todos: data,
+  todos: dataLocal,
   todoInput: "",
   idxEdit: 0,
   inputSearch: "",
@@ -30,7 +39,9 @@ function reducer(state: any, action: any): typeInitState {
         todoInput: action.payload,
       };
     case ADD_TODO:
-      const newId = state.todos.length + 1;
+      const currentTodos = state.todos
+      const lastId = currentTodos[0] ? currentTodos[currentTodos.length - 1].id : 0
+      const newId = lastId + 1
       return {
         ...state,
         todos: [...state.todos, { id: newId, name: action.payload }],

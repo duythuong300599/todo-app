@@ -5,14 +5,7 @@ import InputEdit from "../../atoms/InputEdit";
 import "./style.css";
 
 const GroupInput: React.FC = () => {
-  const { state } = useStore();
-  const { stateBtnSave } = state;
-
-  return (
-    <div className="input-group-container">
-      {stateBtnSave ? <InputEdit /> : <InputAdd />}
-    </div>
-  );
+  return <div className="input-group-container">{<InputAdd />}</div>;
 };
 
 export default GroupInput;

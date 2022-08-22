@@ -1,5 +1,5 @@
 import { Button, Input, message } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
 import { addTodo, setDataInput } from "../../../../stores/actions";
@@ -10,7 +10,12 @@ const InputAdd: React.FC = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { state, dispatch } = useStore();
-  const { todoInput } = state;
+  const { todos, todoInput } = state;
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+    return () => {};
+  }, [todos]);
 
   const success = () => {
     message.success(t("message.addSuccess"));
