@@ -1,10 +1,10 @@
 import { message, Select } from "antd";
 import React, { useEffect, useState } from "react";
 
-import "./style.css";
 import AddNewTag from "../../atoms/AddNewTag";
 import { useStore } from "../../../../stores";
 import { addTag } from "../../../../stores/actions";
+import "./style.css";
 
 interface Props {
   onChange?: (e: any) => void;

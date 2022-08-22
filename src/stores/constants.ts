@@ -5,6 +5,6 @@ export const SET_IDX_EDIT = "set_idx_edit";
 export const DELETE_TODO = "delete_todo";
 export const SEARCH_TODO = "search_todo";
 export const ADD_TAG = "add_tag";
-export const SELECT_TAG = "select_tag";
+export const SELECT_TAG_SEARCH= "select_tag_search";
 export const pageSize = 5;
 

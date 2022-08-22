@@ -1,4 +1,4 @@
-import { ADD_TAG, ADD_TODO, DELETE_TODO, EDIT_TODO, SEARCH_TODO, SELECT_TAG, SET_DATA_INPUT, SET_IDX_EDIT } from "./constants"
+import { ADD_TAG, ADD_TODO, DELETE_TODO, EDIT_TODO, SEARCH_TODO, SELECT_TAG_SEARCH, SET_DATA_INPUT, SET_IDX_EDIT } from "./constants"
 
 export const setDataInput = (payload:string) => ({
     type: SET_DATA_INPUT,
@@ -16,8 +16,8 @@ export const addTag = (payload:string) => ({
     payload
 })
 
-export const selectTag = (payload:string) => ({
-    type: SELECT_TAG,
+export const selectTagSearch = (payload:string) => ({
+    type: SELECT_TAG_SEARCH,
     payload
 })
 

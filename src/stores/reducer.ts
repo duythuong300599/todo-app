@@ -1,14 +1,15 @@
 import { data } from "../mock/mockData";
+import { getLocalStorage } from "../utils/getLocalStorange";
 import {
   ADD_TAG,
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
   SEARCH_TODO,
+  SELECT_TAG_SEARCH,
   SET_DATA_INPUT,
   SET_IDX_EDIT,
 } from "./constants";
-import { getDataLocalStorage } from "./hook";
 
 interface typeInitState {
   todos: Array<{ id: number; tag: string; name: string }>;
@@ -16,10 +17,11 @@ interface typeInitState {
   todoInput: string;
   idxEdit: number;
   inputSearch: string;
+  selectTagSearch: string;
 }
 
-const dataTodoLocal = getDataLocalStorage("todos", [])
-const dataTagLocal = getDataLocalStorage("tags", [])
+const dataTodoLocal = getLocalStorage("todos", []);
+const dataTagLocal = getLocalStorage("tags", []);
 
 const initState: typeInitState = {
   todos: dataTodoLocal,
@@ -27,6 +29,7 @@ const initState: typeInitState = {
   todoInput: "",
   idxEdit: 0,
   inputSearch: "",
+  selectTagSearch: ""
 };
 
 function reducer(state: any, action: any): typeInitState {
@@ -39,9 +42,7 @@ function reducer(state: any, action: any): typeInitState {
 
     case ADD_TODO:
       const currentTodos = state.todos;
-      const lastId = currentTodos[0]
-        ? currentTodos[currentTodos.length - 1].id
-        : 0;
+      const lastId = currentTodos[currentTodos.length - 1]?.id ?? 0;
       const newId = lastId + 1;
       return {
         ...state,
@@ -55,6 +56,12 @@ function reducer(state: any, action: any): typeInitState {
       return {
         ...state,
         tags: [...state.tags, action.payload],
+      };
+
+    case SELECT_TAG_SEARCH:
+      return {
+        ...state,
+        selectTagSearch:  action.payload
       };
 
     case EDIT_TODO:

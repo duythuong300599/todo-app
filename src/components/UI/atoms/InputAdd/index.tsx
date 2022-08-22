@@ -41,7 +41,6 @@ const InputAdd: React.FC = () => {
         dispatch(addTodo({ name: todoInput.trim(), tag: selectTag.trim() }));
         success();
         dispatch(setDataInput(""));
-        setSelectTag("");
         setLoading(false);
       }, 1000);
     } else {
