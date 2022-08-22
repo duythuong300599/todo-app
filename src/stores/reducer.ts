@@ -30,9 +30,7 @@ function reducer(state: any, action: any): typeInitState {
         todoInput: action.payload,
       };
     case ADD_TODO:
-      const data = [...state.todos];
-      const lastId = data[data.length - 1].id;
-      const newId = lastId + 1;
+      const newId = state.todos.length + 1;
       return {
         ...state,
         todos: [...state.todos, { id: newId, name: action.payload }],
