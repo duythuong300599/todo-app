@@ -5,12 +5,14 @@ import AddNewTag from "../../atoms/AddNewTag";
 import { useStore } from "../../../../stores";
 import { addTag } from "../../../../stores/actions";
 import "./style.css";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   onChange?: (e: any) => void;
 }
 
 const SelectTags: React.FC<Props> = ({ onChange }) => {
+  const { t } = useTranslation();
   const { state, dispatch } = useStore();
   const { tags } = state;
   const [newTag, setNewTag] = useState("");
@@ -31,14 +33,14 @@ const SelectTags: React.FC<Props> = ({ onChange }) => {
         setNewTag("");
       }, 200);
     } else {
-      message.error("tag can't be empty");
+      message.error(t("message.addTypeError"));
     }
   };
 
   return (
     <Select
       className="select-tag"
-      placeholder="Select a tag"
+      placeholder={t("content.selectPlaceholder")}
       onChange={onChange}
       dropdownRender={(menu) => (
         <>

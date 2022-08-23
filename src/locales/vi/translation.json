@@ -7,13 +7,17 @@
     "btn-edit": "Chỉnh Sửa",
     "btnAdd": "Thêm",
     "btnSave": "Lưu",
-    "addPlaceholder": "Nhập công việc..."
+    "addPlaceholder": "Nhập công việc...",
+    "selectPlaceholder": "Chọn loại công việc",
+    "newTag": "Nhập loại công việc",
+    "searchPlaceholder": "Tìm kiếm"
   },
   "message": {
     "addSuccess": "Thêm công việc thành công.",
-    "addError": "Công việc không được để trống.",
+    "addError": "Công việc hoặc loại công việc không được để trống.",
     "del": "Bạn có chắc chắn muốn xoá công việc này?",
     "delSuccess": "Xoá thành công",
-    "editSuccess": "Sửa thành công"
+    "editSuccess": "Sửa thành công",
+    "addTypeError": "Loại công việc không được để trống"
   }
 }

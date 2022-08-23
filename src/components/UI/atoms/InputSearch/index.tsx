@@ -1,5 +1,6 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Tooltip } from "antd";
+import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../stores";
 import { selectTagSearch } from "../../../../stores/actions";
 
@@ -13,10 +14,12 @@ interface Props {
 }
 
 const InputSearch: React.FC<Props> = ({ onChange, value, onSubmit }) => {
+  const { t } = useTranslation();
   const { state, dispatch } = useStore();
   const { tags } = state;
 
   const handleSearchTag = (e: string) => {
+    debugger;
     setTimeout(() => {
       dispatch(selectTagSearch(e));
     }, 500);
@@ -27,7 +30,7 @@ const InputSearch: React.FC<Props> = ({ onChange, value, onSubmit }) => {
       <div className="input-search-wrapper">
         <Input
           className="input-search"
-          placeholder="input search text"
+          placeholder={t("content.searchPlaceholder")}
           allowClear
           onChange={onChange}
           value={value}

@@ -1,5 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Divider, Input, Space } from "antd";
+import { useTranslation } from "react-i18next";
 
 import "./style.css";
 
@@ -10,13 +11,18 @@ interface Props {
 }
 
 const AddNewTag: React.FC<Props> = ({ onChange, onClick, value }) => {
+  const { t } = useTranslation();
   return (
     <>
       <Divider className="add-new-tag-divider" />
       <Space className="add-new-tag-wrapper" direction="vertical">
-        <Input placeholder="Enter new tag" value={value} onChange={onChange} />
+        <Input
+          placeholder={t("content.newTag")}
+          value={value}
+          onChange={onChange}
+        />
         <Button type="text" icon={<PlusOutlined />} onClick={onClick}>
-          Add item
+          {t("content.btnAdd")}
         </Button>
       </Space>
     </>

@@ -7,13 +7,17 @@
     "btn-edit": "Edit",
     "btnAdd": "Add",
     "btnSave": "Save",
-    "addPlaceholder": "Enter todo..."
+    "addPlaceholder": "Enter todo...",
+    "selectPlaceholder": "Select a type",
+    "newTag": "Enter new type",
+    "searchPlaceholder": "Input search text"
   },
   "message": {
     "addSuccess": "Add Todo Success",
-    "addError": "Todo can't be empty",
+    "addError": "Todo or type can't be empty",
     "del": "Are you sure to delete this todo?",
     "delSuccess": "Delete Success",
-    "editSuccess": "Edit Success"
+    "editSuccess": "Edit Success",
+    "addTypeError": "Type can't be empty"
   }
 }
