@@ -18,13 +18,11 @@ const TodoItem: React.FC<Props> = ({ item, id }) => {
   const [toggleSave, setToggleSave] = useState(false);
   const [name, setName] = useState(item);
   const { t } = useTranslation();
-  const { state, dispatch } = useStore();
-  const { idxEdit } = state;
+  const { dispatch } = useStore();
 
   const handleToggleSave = () => {
     setToggleSave(true);
     setName(item);
-    dispatch(setIdxEdit(id));
   };
 
   const success = () => {
@@ -44,7 +42,7 @@ const TodoItem: React.FC<Props> = ({ item, id }) => {
       setLoading(true);
       setTimeout(() => {
         success();
-        dispatch(editTodo({ data: name, id: idxEdit }));
+        dispatch(editTodo({ data: name, id: id }));
         dispatch(setDataInput(""));
         setLoading(false);
         setToggleSave(false);

@@ -20,6 +20,7 @@ interface typeInitState {
   selectTagSearch: string;
 }
 
+
 const dataTodoLocal = getLocalStorage("todos", []);
 const dataTagLocal = getLocalStorage("tags", []);
 
